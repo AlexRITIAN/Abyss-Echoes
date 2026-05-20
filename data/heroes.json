@@ -1,0 +1,179 @@
+{
+  "heroes": [
+    {
+      "id": "shield_guardian",
+      "name": "圣盾守卫",
+      "role": "tank",
+      "subRole": "barrier_tank",
+      "positionPreference": "front",
+      "tags": [
+        "tank",
+        "holy",
+        "barrier",
+        "control"
+      ],
+      "basicSkill": "shield_bash",
+      "activeSkill": "divine_barrier",
+      "passiveSkill": "unyielding",
+      "baseStats": {
+        "hp": 1200,
+        "armor": 180,
+        "attack": 70,
+        "spellPower": 20,
+        "attackSpeed": 0.9,
+        "critChance": 0.03,
+        "luckyHitBonus": 0,
+        "speed": 70,
+        "castSpeed": 0.85,
+        "energy": 0,
+        "maxEnergy": 100
+      },
+      "combatRuntimeDefaults": {
+        "atb": 0,
+        "basicAttackTimerSeconds": 0,
+        "casting": null,
+        "targetLock": null
+      }
+    },
+    {
+      "id": "storm_mage",
+      "name": "雷霆术士",
+      "role": "magic_ranged",
+      "subRole": "lightning_aoe",
+      "positionPreference": "back",
+      "tags": [
+        "lightning",
+        "spell",
+        "aoe",
+        "chain"
+      ],
+      "basicSkill": "arc_lightning",
+      "activeSkill": "chain_storm",
+      "passiveSkill": "overload",
+      "baseStats": {
+        "hp": 620,
+        "armor": 45,
+        "attack": 30,
+        "spellPower": 145,
+        "attackSpeed": 1.05,
+        "critChance": 0.08,
+        "luckyHitBonus": 0.05,
+        "speed": 100,
+        "castSpeed": 1.15,
+        "energy": 0,
+        "maxEnergy": 100
+      },
+      "combatRuntimeDefaults": {
+        "atb": 0,
+        "basicAttackTimerSeconds": 0,
+        "casting": null,
+        "targetLock": null
+      }
+    },
+    {
+      "id": "demon_hunter",
+      "name": "猎魔人",
+      "role": "physical_ranged",
+      "subRole": "single_target_burst",
+      "positionPreference": "back",
+      "tags": [
+        "physical",
+        "ranged",
+        "pierce",
+        "crit"
+      ],
+      "basicSkill": "piercing_arrow",
+      "activeSkill": "death_volley",
+      "passiveSkill": "weak_point",
+      "baseStats": {
+        "hp": 720,
+        "armor": 65,
+        "attack": 135,
+        "spellPower": 10,
+        "attackSpeed": 1.25,
+        "critChance": 0.12,
+        "luckyHitBonus": 0.02,
+        "speed": 130,
+        "castSpeed": 1.0,
+        "energy": 0,
+        "maxEnergy": 100
+      },
+      "combatRuntimeDefaults": {
+        "atb": 0,
+        "basicAttackTimerSeconds": 0,
+        "casting": null,
+        "targetLock": null
+      }
+    },
+    {
+      "id": "blood_reaver",
+      "name": "血刃掠夺者",
+      "role": "physical_melee",
+      "subRole": "bleed_reaper",
+      "positionPreference": "front",
+      "tags": [
+        "physical",
+        "melee",
+        "bleed",
+        "execute"
+      ],
+      "basicSkill": "blood_slash",
+      "activeSkill": "reaver_rush",
+      "passiveSkill": "blood_hunt",
+      "baseStats": {
+        "hp": 920,
+        "armor": 100,
+        "attack": 120,
+        "spellPower": 0,
+        "attackSpeed": 1.15,
+        "critChance": 0.1,
+        "luckyHitBonus": 0.01,
+        "speed": 115,
+        "castSpeed": 1.05,
+        "energy": 0,
+        "maxEnergy": 100
+      },
+      "combatRuntimeDefaults": {
+        "atb": 0,
+        "basicAttackTimerSeconds": 0,
+        "casting": null,
+        "targetLock": null
+      }
+    },
+    {
+      "id": "star_priest",
+      "name": "星光祭司",
+      "role": "support",
+      "subRole": "healer_buffer",
+      "positionPreference": "back",
+      "tags": [
+        "holy",
+        "heal",
+        "support",
+        "barrier"
+      ],
+      "basicSkill": "star_bolt",
+      "activeSkill": "stellar_grace",
+      "passiveSkill": "gentle_light",
+      "baseStats": {
+        "hp": 760,
+        "armor": 60,
+        "attack": 35,
+        "spellPower": 115,
+        "attackSpeed": 1.0,
+        "critChance": 0.04,
+        "luckyHitBonus": 0.03,
+        "speed": 95,
+        "castSpeed": 1.1,
+        "energy": 0,
+        "maxEnergy": 100
+      },
+      "combatRuntimeDefaults": {
+        "atb": 0,
+        "basicAttackTimerSeconds": 0,
+        "casting": null,
+        "targetLock": null
+      }
+    }
+  ]
+}

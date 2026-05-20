@@ -1,0 +1,371 @@
+{
+  "skills": [
+    {
+      "id": "shield_bash",
+      "name": "盾击",
+      "type": "basic",
+      "tags": [
+        "physical",
+        "melee",
+        "control"
+      ],
+      "targeting": "nearest_enemy",
+      "damageType": "physical",
+      "scalesWith": "attack",
+      "multiplier": 0.85,
+      "energyGain": 12,
+      "luckyHit": 0.08,
+      "effects": [
+        {
+          "type": "chance_apply_status",
+          "status": "stun",
+          "chance": 0.2,
+          "durationSeconds": 1.0
+        }
+      ],
+      "baseCastTimeSeconds": 0,
+      "actionType": "basic_attack",
+      "usesAttackSpeed": true,
+      "basicAttackCooldownFormula": "1 / caster.attackSpeed"
+    },
+    {
+      "id": "divine_barrier",
+      "name": "神圣壁垒",
+      "type": "active",
+      "tags": [
+        "holy",
+        "barrier",
+        "defense"
+      ],
+      "targeting": "all_allies",
+      "energyCost": 100,
+      "cooldownSeconds": 18,
+      "aiCondition": {
+        "allyHpBelowPercent": 0.75,
+        "allyCountAtLeast": 2
+      },
+      "effects": [
+        {
+          "type": "grant_barrier",
+          "scaleWith": "caster_max_hp",
+          "value": 0.22,
+          "durationSeconds": 8
+        }
+      ],
+      "baseCastTimeSeconds": 0.8,
+      "actionType": "active_skill",
+      "usesCastSpeed": true,
+      "castTimeFormula": "baseCastTimeSeconds / caster.castSpeed"
+    },
+    {
+      "id": "unyielding",
+      "name": "不屈",
+      "type": "passive",
+      "tags": [
+        "defense",
+        "damage_reduction"
+      ],
+      "effects": [
+        {
+          "type": "conditional_damage_reduction",
+          "selfHpBelowPercent": 0.3,
+          "value": 0.35
+        }
+      ],
+      "actionType": "passive"
+    },
+    {
+      "id": "arc_lightning",
+      "name": "电弧",
+      "type": "basic",
+      "tags": [
+        "lightning",
+        "spell",
+        "chain"
+      ],
+      "targeting": "chain_enemies",
+      "damageType": "lightning",
+      "scalesWith": "spellPower",
+      "multiplier": 0.75,
+      "chainCount": 2,
+      "energyGain": 10,
+      "luckyHit": 0.15,
+      "effects": [
+        {
+          "type": "apply_status",
+          "status": "shock",
+          "durationSeconds": 4,
+          "stack": 1
+        }
+      ],
+      "baseCastTimeSeconds": 0,
+      "actionType": "basic_attack",
+      "usesAttackSpeed": true,
+      "basicAttackCooldownFormula": "1 / caster.attackSpeed"
+    },
+    {
+      "id": "chain_storm",
+      "name": "连锁风暴",
+      "type": "active",
+      "tags": [
+        "lightning",
+        "spell",
+        "aoe",
+        "chain",
+        "duration"
+      ],
+      "targeting": "enemy_group_max_coverage",
+      "damageType": "lightning",
+      "scalesWith": "spellPower",
+      "multiplier": 2.2,
+      "energyCost": 100,
+      "cooldownSeconds": 12,
+      "luckyHit": 0.18,
+      "aiCondition": {
+        "enemyCountAtLeast": 2
+      },
+      "effects": [
+        {
+          "type": "multi_hit",
+          "hits": 5
+        },
+        {
+          "type": "apply_status",
+          "status": "shock",
+          "durationSeconds": 5,
+          "stack": 2
+        }
+      ],
+      "baseCastTimeSeconds": 1.2,
+      "actionType": "active_skill",
+      "usesCastSpeed": true,
+      "castTimeFormula": "baseCastTimeSeconds / caster.castSpeed"
+    },
+    {
+      "id": "overload",
+      "name": "超载",
+      "type": "passive",
+      "tags": [
+        "lightning",
+        "lucky_hit",
+        "trigger"
+      ],
+      "effects": [
+        {
+          "type": "on_lucky_hit_cast_extra",
+          "skillId": "arc_lightning",
+          "chance": 0.25
+        }
+      ],
+      "actionType": "passive"
+    },
+    {
+      "id": "piercing_arrow",
+      "name": "穿透箭",
+      "type": "basic",
+      "tags": [
+        "physical",
+        "ranged",
+        "pierce"
+      ],
+      "targeting": "line_enemies",
+      "damageType": "physical",
+      "scalesWith": "attack",
+      "multiplier": 0.95,
+      "energyGain": 11,
+      "luckyHit": 0.1,
+      "baseCastTimeSeconds": 0,
+      "actionType": "basic_attack",
+      "usesAttackSpeed": true,
+      "basicAttackCooldownFormula": "1 / caster.attackSpeed"
+    },
+    {
+      "id": "death_volley",
+      "name": "死亡齐射",
+      "type": "active",
+      "tags": [
+        "physical",
+        "ranged",
+        "multi_hit",
+        "crit"
+      ],
+      "targeting": "lowest_hp_enemy",
+      "damageType": "physical",
+      "scalesWith": "attack",
+      "multiplier": 0.55,
+      "hits": 8,
+      "energyCost": 100,
+      "cooldownSeconds": 14,
+      "luckyHit": 0.12,
+      "aiCondition": {
+        "bossOrElitePresent": true
+      },
+      "baseCastTimeSeconds": 0.6,
+      "actionType": "active_skill",
+      "usesCastSpeed": true,
+      "castTimeFormula": "baseCastTimeSeconds / caster.castSpeed"
+    },
+    {
+      "id": "weak_point",
+      "name": "弱点打击",
+      "type": "passive",
+      "tags": [
+        "crit",
+        "execute"
+      ],
+      "effects": [
+        {
+          "type": "crit_chance_vs_low_hp",
+          "targetHpBelowPercent": 0.5,
+          "value": 0.2
+        }
+      ],
+      "actionType": "passive"
+    },
+    {
+      "id": "blood_slash",
+      "name": "血刃斩",
+      "type": "basic",
+      "tags": [
+        "physical",
+        "melee",
+        "bleed"
+      ],
+      "targeting": "nearest_enemy",
+      "damageType": "physical",
+      "scalesWith": "attack",
+      "multiplier": 0.9,
+      "energyGain": 13,
+      "effects": [
+        {
+          "type": "apply_status",
+          "status": "bleed",
+          "durationSeconds": 5,
+          "stack": 1
+        }
+      ],
+      "baseCastTimeSeconds": 0,
+      "actionType": "basic_attack",
+      "usesAttackSpeed": true,
+      "basicAttackCooldownFormula": "1 / caster.attackSpeed"
+    },
+    {
+      "id": "reaver_rush",
+      "name": "掠夺突袭",
+      "type": "active",
+      "tags": [
+        "physical",
+        "melee",
+        "execute",
+        "dash"
+      ],
+      "targeting": "lowest_hp_enemy",
+      "damageType": "physical",
+      "scalesWith": "attack",
+      "multiplier": 2.6,
+      "energyCost": 100,
+      "cooldownSeconds": 13,
+      "aiCondition": {
+        "enemyHpBelowPercent": 0.45
+      },
+      "baseCastTimeSeconds": 0.3,
+      "actionType": "active_skill",
+      "usesCastSpeed": true,
+      "castTimeFormula": "baseCastTimeSeconds / caster.castSpeed"
+    },
+    {
+      "id": "blood_hunt",
+      "name": "血猎",
+      "type": "passive",
+      "tags": [
+        "bleed",
+        "execute"
+      ],
+      "effects": [
+        {
+          "type": "damage_vs_status",
+          "status": "bleed",
+          "value": 0.25
+        }
+      ],
+      "actionType": "passive"
+    },
+    {
+      "id": "star_bolt",
+      "name": "星光弹",
+      "type": "basic",
+      "tags": [
+        "holy",
+        "spell",
+        "support"
+      ],
+      "targeting": "nearest_enemy",
+      "damageType": "holy",
+      "scalesWith": "spellPower",
+      "multiplier": 0.65,
+      "energyGain": 12,
+      "effects": [
+        {
+          "type": "heal_lowest_ally",
+          "scaleWith": "spellPower",
+          "value": 0.25
+        }
+      ],
+      "baseCastTimeSeconds": 0,
+      "actionType": "basic_attack",
+      "usesAttackSpeed": true,
+      "basicAttackCooldownFormula": "1 / caster.attackSpeed"
+    },
+    {
+      "id": "stellar_grace",
+      "name": "星辰恩典",
+      "type": "active",
+      "tags": [
+        "holy",
+        "heal",
+        "barrier",
+        "support"
+      ],
+      "targeting": "all_allies",
+      "energyCost": 100,
+      "cooldownSeconds": 16,
+      "aiCondition": {
+        "allyHpBelowPercent": 0.6,
+        "allyCountAtLeast": 2
+      },
+      "effects": [
+        {
+          "type": "heal",
+          "scaleWith": "spellPower",
+          "value": 2.4
+        },
+        {
+          "type": "grant_barrier",
+          "scaleWith": "spellPower",
+          "value": 1.2,
+          "durationSeconds": 6
+        }
+      ],
+      "baseCastTimeSeconds": 1.0,
+      "actionType": "active_skill",
+      "usesCastSpeed": true,
+      "castTimeFormula": "baseCastTimeSeconds / caster.castSpeed"
+    },
+    {
+      "id": "gentle_light",
+      "name": "柔光",
+      "type": "passive",
+      "tags": [
+        "heal",
+        "support"
+      ],
+      "effects": [
+        {
+          "type": "increase_healing_done",
+          "value": 0.18
+        }
+      ],
+      "actionType": "passive"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "aspects": [
+    {
+      "id": "storm_convergence",
+      "name": "风暴汇流",
+      "category": "offense",
+      "allowedSlots": ["weapon", "gloves", "amulet", "ring_1", "ring_2"],
+      "tags": ["lightning", "trigger"],
+      "effect": "雷电技能命中时，有 {value}% 概率释放额外闪电。",
+      "rollRange": [12, 22]
+    },
+    {
+      "id": "immortal_barrier",
+      "name": "不灭屏障",
+      "category": "defense",
+      "allowedSlots": ["helmet", "chest", "pants", "amulet"],
+      "tags": ["barrier", "defense"],
+      "effect": "生命低于 35% 时，自动获得最大生命 {value}% 的屏障。",
+      "rollRange": [18, 32]
+    },
+    {
+      "id": "frozen_abyss",
+      "name": "寒冰深渊",
+      "category": "offense",
+      "allowedSlots": ["weapon", "gloves", "amulet", "ring_1", "ring_2"],
+      "tags": ["ice", "explosion", "control"],
+      "effect": "被冻结的敌人死亡时产生冰爆，造成 {value}% 法强伤害。",
+      "rollRange": [120, 220]
+    },
+    {
+      "id": "blood_rage",
+      "name": "血怒",
+      "category": "offense",
+      "allowedSlots": ["weapon", "gloves", "ring_1", "ring_2"],
+      "tags": ["physical", "attack_speed", "low_hp"],
+      "effect": "生命低于 50% 时，攻击速度提高 {value}%。",
+      "rollRange": [15, 30]
+    },
+    {
+      "id": "gentle_starlight",
+      "name": "柔星回响",
+      "category": "utility",
+      "allowedSlots": ["amulet", "ring_1", "ring_2", "helmet"],
+      "tags": ["heal", "support"],
+      "effect": "治疗技能会额外为目标施加治疗量 {value}% 的屏障。",
+      "rollRange": [20, 40]
+    }
+  ]
+}

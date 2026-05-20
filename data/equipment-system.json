@@ -1,0 +1,234 @@
+{
+  "slots": [
+    "weapon",
+    "helmet",
+    "chest",
+    "gloves",
+    "pants",
+    "boots",
+    "amulet",
+    "ring_1",
+    "ring_2"
+  ],
+  "rarities": [
+    {
+      "id": "normal",
+      "name": "普通",
+      "affixCount": [
+        0,
+        0
+      ],
+      "aspect": false
+    },
+    {
+      "id": "magic",
+      "name": "魔法",
+      "affixCount": [
+        1,
+        2
+      ],
+      "aspect": false
+    },
+    {
+      "id": "rare",
+      "name": "稀有",
+      "affixCount": [
+        3,
+        4
+      ],
+      "aspect": false
+    },
+    {
+      "id": "legendary",
+      "name": "传奇",
+      "affixCount": [
+        4,
+        4
+      ],
+      "aspect": true
+    },
+    {
+      "id": "ancestral_legendary",
+      "name": "远古传奇",
+      "affixCount": [
+        4,
+        4
+      ],
+      "aspect": true,
+      "higherRolls": true
+    },
+    {
+      "id": "unique",
+      "name": "暗金",
+      "fixedAffixes": true,
+      "mechanicChanging": true
+    },
+    {
+      "id": "mythic",
+      "name": "神话",
+      "fixedAffixes": true,
+      "ultraRare": true
+    }
+  ],
+  "affixCategories": {
+    "offense": [
+      "crit_chance",
+      "crit_damage",
+      "attack_speed",
+      "lucky_hit",
+      "cooldown_reduction",
+      "physical_damage",
+      "lightning_damage",
+      "fire_damage",
+      "ice_damage",
+      "poison_damage",
+      "aoe_damage",
+      "damage_vs_vulnerable",
+      "damage_vs_controlled",
+      "damage_vs_bleeding",
+      "damage_vs_shocked",
+      "cast_speed"
+    ],
+    "defense": [
+      "max_hp",
+      "armor",
+      "damage_reduction",
+      "barrier_generation",
+      "healing_received",
+      "dodge_chance",
+      "element_resistance"
+    ],
+    "utility": [
+      "energy_generation",
+      "resource_cost_reduction",
+      "status_duration",
+      "control_strength",
+      "movement_speed",
+      "speed",
+      "atb_on_kill",
+      "atb_on_lucky_hit",
+      "slow_effect",
+      "freeze_duration"
+    ],
+    "skill": [
+      "plus_chain_storm",
+      "plus_divine_barrier",
+      "plus_death_volley",
+      "plus_reaver_rush",
+      "plus_stellar_grace"
+    ]
+  },
+  "greaterAffix": {
+    "enabled": true,
+    "displayPrefix": "★",
+    "valueMultiplier": 1.5,
+    "maxCountPerItem": 3
+  },
+  "crafting": {
+    "temper": "追加或替换一个可淬炼词条。",
+    "masterwork": "强化现有词条，特定等级会大幅强化随机词条。",
+    "corruption": "高风险强化，获得强力收益与负面代价。"
+  },
+  "affixDefinitions": {
+    "speed": {
+      "name": "行动速度",
+      "valueType": "flat",
+      "sampleRange": [
+        6,
+        18
+      ],
+      "slots": [
+        "boots",
+        "amulet",
+        "ring_1",
+        "ring_2"
+      ]
+    },
+    "attack_speed": {
+      "name": "攻击速度",
+      "valueType": "percent",
+      "sampleRange": [
+        0.06,
+        0.22
+      ],
+      "slots": [
+        "weapon",
+        "gloves",
+        "ring_1",
+        "ring_2"
+      ]
+    },
+    "cast_speed": {
+      "name": "施法速度",
+      "valueType": "percent",
+      "sampleRange": [
+        0.06,
+        0.24
+      ],
+      "slots": [
+        "weapon",
+        "gloves",
+        "amulet"
+      ]
+    },
+    "atb_on_kill": {
+      "name": "击杀获得行动条",
+      "valueType": "flat_atb",
+      "sampleRange": [
+        5,
+        20
+      ],
+      "slots": [
+        "boots",
+        "weapon",
+        "ring_1",
+        "ring_2"
+      ]
+    },
+    "atb_on_lucky_hit": {
+      "name": "幸运一击获得行动条",
+      "valueType": "flat_atb",
+      "sampleRange": [
+        2,
+        8
+      ],
+      "slots": [
+        "gloves",
+        "ring_1",
+        "ring_2"
+      ]
+    },
+    "slow_effect": {
+      "name": "减速效果",
+      "valueType": "percent",
+      "sampleRange": [
+        0.08,
+        0.25
+      ],
+      "slots": [
+        "boots",
+        "amulet"
+      ]
+    },
+    "freeze_duration": {
+      "name": "冻结持续时间",
+      "valueType": "percent",
+      "sampleRange": [
+        0.08,
+        0.3
+      ],
+      "slots": [
+        "helmet",
+        "amulet",
+        "ring_1",
+        "ring_2"
+      ]
+    }
+  },
+  "speedAffixPolicy": {
+    "speed": "不直接增加伤害，但提高行动次数、先手与主动技能循环速度。",
+    "attack_speed": "只影响普攻频率以及由普攻带来的能量、幸运一击和被动触发。",
+    "cast_speed": "只影响主动技能施法时间，不缩短技能冷却。",
+    "cooldown_reduction": "只缩短冷却，不改变施法时间。"
+  }
+}

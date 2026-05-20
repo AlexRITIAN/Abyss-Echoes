@@ -1,0 +1,105 @@
+{
+  "items": [
+    {
+      "id": "itm_init_001",
+      "name": "新兵长剑",
+      "slot": "weapon",
+      "rarity": "rare",
+      "itemPower": 120,
+      "baseStats": {
+        "attack": 28
+      },
+      "affixes": [
+        {
+          "id": "attack_speed",
+          "value": 0.04
+        },
+        {
+          "id": "crit_chance",
+          "value": 0.03
+        },
+        {
+          "id": "physical_damage",
+          "value": 0.08
+        }
+      ]
+    },
+    {
+      "id": "itm_init_002",
+      "name": "学徒法杖",
+      "slot": "weapon",
+      "rarity": "legendary",
+      "itemPower": 135,
+      "baseStats": {
+        "spellPower": 35
+      },
+      "affixes": [
+        {
+          "id": "lightning_damage",
+          "value": 0.12
+        },
+        {
+          "id": "lucky_hit",
+          "value": 0.04
+        },
+        {
+          "id": "crit_chance",
+          "value": 0.03
+        },
+        {
+          "id": "aoe_damage",
+          "value": 0.08
+        }
+      ],
+      "aspect": {
+        "id": "storm_convergence",
+        "value": 14
+      }
+    },
+    {
+      "id": "itm_init_003",
+      "name": "旧制盾甲",
+      "slot": "chest",
+      "rarity": "rare",
+      "itemPower": 118,
+      "baseStats": {
+        "armor": 36
+      },
+      "affixes": [
+        {
+          "id": "max_hp",
+          "value": 90
+        },
+        {
+          "id": "armor",
+          "value": 22
+        },
+        {
+          "id": "damage_reduction",
+          "value": 0.03
+        }
+      ]
+    },
+    {
+      "id": "itm_initial_swift_boots",
+      "name": "迅捷旅者之靴",
+      "slot": "boots",
+      "rarity": "rare",
+      "itemPower": 120,
+      "affixes": [
+        {
+          "type": "speed",
+          "value": 8
+        },
+        {
+          "type": "movement_speed",
+          "value": 0.08
+        },
+        {
+          "type": "dodge_chance",
+          "value": 0.03
+        }
+      ]
+    }
+  ]
+}
