@@ -34,6 +34,19 @@
 ```
 
 
+
+## 启动方式
+
+现在支持直接使用 `abyss` 启动游戏（无需手动输入 `python3 game_cli.py`）。
+
+```bash
+# 在仓库根目录
+./abyss
+
+# 可选：加入 PATH 后可在任意目录直接运行 abyss
+ln -sf "$(pwd)/abyss" ~/.local/bin/abyss
+```
+
 ## v1.1 更新
 
 新增速度系统：`docs/speed-system.md` 与 `data/speed-system.json`。战斗模式升级为 ATB 半实时自动战斗。
