@@ -54,22 +54,19 @@ def make_team(save, heroes):
 
 
 def generate_enemies(map_name: str):
-    base = [
+    return [
         Unit("mob_1", f"{map_name}行尸", 800, 800, 75, 30, 1.0, 1.0, 85, 0.05),
         Unit("mob_2", f"{map_name}毒咒者", 700, 700, 55, 65, 0.9, 1.1, 95, 0.06),
         Unit("mob_3", f"{map_name}守墓者", 900, 900, 80, 20, 0.95, 1.0, 80, 0.04),
     ]
-    return base
 
 
 def do_damage(caster: Unit, target: Unit, mult: float, scale: str):
     main = caster.attack if scale == "attack" else caster.spell
     dmg = main * mult * random.uniform(0.9, 1.1)
-    if random.random() < caster.crit:
+    crit = random.random() < caster.crit
+    if crit:
         dmg *= 1.5
-        crit = True
-    else:
-        crit = False
     target.hp -= dmg
     return dmg, crit
 
@@ -113,7 +110,15 @@ def battle(team, enemies, heroes, skills, speed_cfg, map_name):
                 if u in team:
                     sk = choose_skill(u, skill_book, hero_def[u.id])
                 else:
-                    sk = {"id": "enemy_hit", "name": "腐化打击", "multiplier": 0.85, "scalesWith": "attack", "energyGain": 8, "type": "basic", "baseCastTimeSeconds": 0}
+                    sk = {
+                        "id": "enemy_hit",
+                        "name": "腐化打击",
+                        "multiplier": 0.85,
+                        "scalesWith": "attack",
+                        "energyGain": 8,
+                        "type": "basic",
+                        "baseCastTimeSeconds": 0,
+                    }
 
                 if sk.get("type") == "active":
                     u.energy -= sk.get("energyCost", 0)
@@ -158,46 +163,74 @@ def battle(team, enemies, heroes, skills, speed_cfg, map_name):
     return "\n".join(log)
 
 
+def print_panel(title: str, lines: list[str]):
+    width = max(48, len(title) + 6, *(len(line) + 4 for line in lines))
+    top = "┌" + "─" * (width - 2) + "┐"
+    sep = "├" + "─" * (width - 2) + "┤"
+    bottom = "└" + "─" * (width - 2) + "┘"
+    print(top)
+    print(f"│ {title.center(width - 4)} │")
+    print(sep)
+    for line in lines:
+        print(f"│ {line.ljust(width - 4)} │")
+    print(bottom)
+
+
 def show_party(save, heroes):
     by_id = {h["id"]: h for h in heroes["heroes"]}
-    print("阵容：")
-    print("前排：" + " / ".join(by_id[x]["name"] for x in save["party"]["front"]))
-    print("后排：" + " / ".join(by_id[x]["name"] for x in save["party"]["back"]))
+    lines = [
+        "前排：" + " / ".join(by_id[x]["name"] for x in save["party"]["front"]),
+        "后排：" + " / ".join(by_id[x]["name"] for x in save["party"]["back"]),
+    ]
+    print_panel("👥 当前阵容", lines)
+
+
+def choose_menu(prompt: str, options: list[str]) -> int:
+    print_panel("🎮 操作菜单", [f"{idx + 1}. {name}" for idx, name in enumerate(options)])
+    while True:
+        raw = input(f"{prompt}（输入数字）> ").strip()
+        if raw.isdigit():
+            val = int(raw)
+            if 1 <= val <= len(options):
+                return val
+        print("请输入有效数字，例如：1")
 
 
 def main():
-    rules = load_json("data/game-rules.json")
     heroes = load_json("data/heroes.json")
     skills = load_json("data/skills.json")
     speed_cfg = load_json("data/speed-system.json")
     save = load_json("save/player-save.initial.json")
     content = load_json("data/content.json")
 
-    print("深渊回响 CLI（WSL 命令行版）")
-    print("输入：开始游戏 / 查看阵容 / 进入地图 <地图名> / 退出")
+    unlocked = [m for m in content["maps"] if m["id"] in save["progress"]["unlockedMaps"]]
+
+    print_panel("深渊回响 CLI · TUI 模式", [
+        f"欢迎你，{save['name']}（存档：{save['playerId']}）",
+        "使用数字选择操作，更直观更方便。",
+    ])
 
     while True:
-        cmd = input("\n> ").strip()
-        if cmd == "退出":
-            print("已退出游戏。")
-            return
-        if cmd == "开始游戏":
-            print(f"欢迎，{save['name']}！已载入存档 {save['playerId']}。")
+        choice = choose_menu("请选择操作", ["开始游戏", "查看阵容", "进入地图", "退出"])
+
+        if choice == 1:
+            print_panel("📜 存档信息", [
+                f"玩家：{save['name']}",
+                f"存档 ID：{save['playerId']}",
+                "可选地图：" + "、".join(m["name"] for m in unlocked),
+            ])
+        elif choice == 2:
             show_party(save, heroes)
-            print("可选地图：" + "、".join(m["name"] for m in content["maps"] if m["id"] in save["progress"]["unlockedMaps"]))
-        elif cmd == "查看阵容":
-            show_party(save, heroes)
-        elif cmd.startswith("进入地图"):
-            map_name = cmd.replace("进入地图", "", 1).strip()
-            maps = {m["name"]: m for m in content["maps"]}
-            if map_name not in maps:
-                print("未知地图。")
-                continue
+        elif choice == 3:
+            map_idx = choose_menu("选择地图", [m["name"] for m in unlocked])
+            map_name = unlocked[map_idx - 1]["name"]
             team = make_team(save, heroes)
             enemies = generate_enemies(map_name)
-            print(battle(team, enemies, heroes, skills, speed_cfg, map_name))
-        else:
-            print("未知命令。")
+            result = battle(team, enemies, heroes, skills, speed_cfg, map_name)
+            print_panel("⚔️ 战斗日志", result.split("\n"))
+        elif choice == 4:
+            print("已退出游戏。")
+            return
 
 
 if __name__ == "__main__":
