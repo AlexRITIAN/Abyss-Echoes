@@ -9,6 +9,8 @@ ROOT = Path(__file__).resolve().parent
 DOCS = ROOT / "docs"
 
 BATTLE_LINE_DELAY = 0.25
+SAVE_FILE = DOCS / "save/player-save.json"
+INITIAL_SAVE_FILE = DOCS / "save/player-save.initial.json"
 
 
 def load_json(rel: str):
@@ -32,6 +34,7 @@ class Unit:
     basic_timer: float = 0.0
     energy: float = 0.0
     cooldowns: dict = field(default_factory=dict)
+    skill_charge: float = 0.0
 
 
 def make_team(save, heroes):
@@ -79,9 +82,17 @@ def do_damage(caster: Unit, target: Unit, mult: float, scale: str):
 
 def choose_skill(unit: Unit, skill_book, hero_def):
     active = skill_book[hero_def["activeSkill"]]
-    if unit.energy >= active.get("energyCost", 9999) and unit.cooldowns.get(active["id"], 0) <= 0:
+    if unit.skill_charge >= 100 and unit.cooldowns.get(active["id"], 0) <= 0:
         return active
     return skill_book[hero_def["basicSkill"]]
+
+
+def resolve_drop(is_boss: bool, wave: int):
+    if is_boss:
+        return ["深渊碎片", "稀有装备箱", "金币x500"]
+    if wave >= 3:
+        return ["金币x120"]
+    return ["金币x80"]
 
 
 def battle(team, enemies, heroes, skills, speed_cfg, battle_name):
@@ -115,7 +126,7 @@ def battle(team, enemies, heroes, skills, speed_cfg, battle_name):
                 else:
                     sk = {"id": "enemy_hit", "name": "腐化打击", "multiplier": 0.85, "scalesWith": "attack", "energyGain": 8, "type": "basic"}
                 if sk.get("type") == "active":
-                    u.energy -= sk.get("energyCost", 0)
+                    u.skill_charge = 0
                     u.cooldowns[sk["id"]] = sk.get("cooldownSeconds", 0)
                 total, crit_any = 0.0, False
                 for _ in range(sk.get("hits", 1)):
@@ -124,9 +135,11 @@ def battle(team, enemies, heroes, skills, speed_cfg, battle_name):
                     crit_any = crit_any or crit
                     if target.hp <= 0:
                         break
-                u.energy = min(100, u.energy + sk.get("energyGain", 0))
+                if sk.get("type") == "basic":
+                    u.skill_charge = min(100, u.skill_charge + sk.get("energyGain", 8))
                 mm, ss = int(seconds // 60), int(seconds % 60)
-                log.append(f"⏱ {mm:02d}:{ss:02d} {u.name}释放【{sk['name']}】 造成 {total:.0f} 伤害" + ("（暴击）" if crit_any else ""))
+                charge_info = f"（技能条 {u.skill_charge:.0f}/100）" if sk.get("type") == "basic" else ""
+                log.append(f"⏱ {mm:02d}:{ss:02d} {u.name}释放【{sk['name']}】 造成 {total:.0f} 伤害" + ("（暴击）" if crit_any else "") + charge_info)
                 if target.hp <= 0:
                     log.append(f"💀 {target.name} 倒下")
                     if target in targets:
@@ -135,7 +148,11 @@ def battle(team, enemies, heroes, skills, speed_cfg, battle_name):
     win = bool(team and not enemies)
     log.append("✅ 战斗胜利" if win else "❌ 战斗失败")
     log.append(f"耗时：{seconds:.1f}秒")
-    return log, win
+    summary = {
+        "duration": seconds,
+        "win": win,
+    }
+    return log, summary
 
 
 def print_panel(title: str, lines: list[str]):
@@ -191,28 +208,48 @@ def run_magic_tower(save, heroes, skills, speed_cfg, state):
     floor = base + pick - 1
     print_panel("🗼 魔塔挑战", [f"当前选择：第{floor}层", "每层共5轮，第5轮为Boss。"])
 
+    all_drops = []
+    all_logs = []
     for wave in range(1, 6):
         is_boss = wave == 5
         scale = 1 + (floor - 1) * 0.06 + (wave - 1) * 0.03
         team = make_team(save, heroes)
         enemies = generate_enemies("魔塔", level_scale=scale, is_boss=is_boss)
-        log, win = battle(team, enemies, heroes, skills, speed_cfg, f"魔塔 第{floor}层 第{wave}轮" + ("（Boss）" if is_boss else ""))
-        stream_lines(log)
-        if not win:
+        log, result = battle(team, enemies, heroes, skills, speed_cfg, f"魔塔 第{floor}层 第{wave}轮" + ("（Boss）" if is_boss else ""))
+        all_logs.extend(log)
+        if not result["win"]:
+            stream_lines(all_logs)
             print(f"挑战止步于第{floor}层第{wave}轮。")
             return
+        if is_boss:
+            all_drops.extend(resolve_drop(is_boss, wave))
     state["max_unlocked_floor"] = max(state["max_unlocked_floor"], min(200, floor + 1))
+    stream_lines(all_logs)
+    print_panel("📜 魔塔战报", [f"通关层数：第{floor}层", "掉落：" + "、".join(all_drops)])
     print(f"🎉 成功通关第{floor}层！下次可从第{state['max_unlocked_floor']}层开始，最多上选5层。")
+
+
+def load_save():
+    path = SAVE_FILE if SAVE_FILE.exists() else INITIAL_SAVE_FILE
+    with path.open("r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def save_game(save, tower_state):
+    save["progress"]["abyssMaxLayer"] = max(save["progress"].get("abyssMaxLayer", 0), tower_state["max_unlocked_floor"] - 1)
+    SAVE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with SAVE_FILE.open("w", encoding="utf-8") as f:
+        json.dump(save, f, ensure_ascii=False, indent=2)
 
 
 def main():
     heroes = load_json("data/heroes.json")
     skills = load_json("data/skills.json")
     speed_cfg = load_json("data/speed-system.json")
-    save = load_json("save/player-save.initial.json")
+    save = load_save()
     content = load_json("data/content.json")
     unlocked = [m for m in content["maps"] if m["id"] in save["progress"]["unlockedMaps"]]
-    tower_state = {"max_unlocked_floor": 1}
+    tower_state = {"max_unlocked_floor": max(1, int(save["progress"].get("abyssMaxLayer", 0)) + 1)}
 
     render_tui(
         f"欢迎你，{save['name']}（存档：{save['playerId']}）",
@@ -222,7 +259,7 @@ def main():
     input()
 
     while True:
-        options = ["查看阵容", "进入地图", "挑战魔塔", "退出"]
+        options = ["查看阵容", "进入地图", "挑战魔塔", "保存进度", "退出"]
         choice = choose_menu("请选择操作", options)
         selected = options[choice - 1]
         if selected == "查看阵容":
@@ -236,6 +273,9 @@ def main():
             stream_lines(log)
         elif selected == "挑战魔塔":
             run_magic_tower(save, heroes, skills, speed_cfg, tower_state)
+        elif selected == "保存进度":
+            save_game(save, tower_state)
+            print("💾 存档成功。")
         else:
             print("已退出游戏。")
             return
