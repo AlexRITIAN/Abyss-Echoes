@@ -8,6 +8,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 DOCS = ROOT / "docs"
 
+BATTLE_LINE_DELAY = 0.25
+
 
 def load_json(rel: str):
     with (DOCS / rel).open("r", encoding="utf-8") as f:
@@ -137,23 +139,7 @@ def battle(team, enemies, heroes, skills, speed_cfg, battle_name):
 
 
 def print_panel(title: str, lines: list[str]):
-    width = max(48, len(title) + 6, *(len(line) + 4 for line in lines))
-    print("┌" + "─" * (width - 2) + "┐")
-    print(f"│ {title.center(width - 4)} │")
-    print("├" + "─" * (width - 2) + "┤")
-    for line in lines:
-        print(f"│ {line.ljust(width - 4)} │")
-    print("└" + "─" * (width - 2) + "┘")
-
-
-def stream_lines(lines: list[str], delay: float = 0.06):
-    for line in lines:
-        print(line)
-        time.sleep(delay)
-
-
-def print_panel(title: str, lines: list[str]):
-    width = max(48, len(title) + 6, *(len(line) + 4 for line in lines))
+    width = max(64, len(title) + 6, *(len(line) + 4 for line in lines))
     top = "┌" + "─" * (width - 2) + "┐"
     sep = "├" + "─" * (width - 2) + "┤"
     bottom = "└" + "─" * (width - 2) + "┘"
@@ -165,6 +151,21 @@ def print_panel(title: str, lines: list[str]):
     print(bottom)
 
 
+def clear_screen():
+    print("[2J[H", end="")
+
+
+def render_tui(title: str, menu_lines: list[str], hint: str = ""):
+    clear_screen()
+    print_panel("深渊回响 · 指挥终端", [title, "", *menu_lines, "", hint])
+
+
+def stream_lines(lines: list[str], delay: float = BATTLE_LINE_DELAY):
+    for line in lines:
+        print(line)
+        time.sleep(delay)
+
+
 def show_party(save, heroes):
     by_id = {h["id"]: h for h in heroes["heroes"]}
     print_panel("👥 当前阵容", [
@@ -174,7 +175,7 @@ def show_party(save, heroes):
 
 
 def choose_menu(prompt: str, options: list[str]) -> int:
-    print_panel("🎮 操作菜单", [f"{i + 1}. {name}" for i, name in enumerate(options)])
+    render_tui(prompt, [f"{i + 1}. {name}" for i, name in enumerate(options)], "输入数字并回车")
     while True:
         raw = input(f"{prompt}（输入数字）> ").strip()
         if raw.isdigit() and 1 <= int(raw) <= len(options):
@@ -213,20 +214,18 @@ def main():
     unlocked = [m for m in content["maps"] if m["id"] in save["progress"]["unlockedMaps"]]
     tower_state = {"max_unlocked_floor": 1}
 
-    print_panel("深渊回响 CLI · TUI 模式", [
-        "1. 开始游戏",
+    render_tui(
         f"欢迎你，{save['name']}（存档：{save['playerId']}）",
-    ])
+        ["游戏已自动开始（命令行启动即进入主菜单）", f"可选地图：{'、'.join(m['name'] for m in unlocked)}"],
+        "按回车继续"
+    )
+    input()
 
-    started = False
     while True:
-        options = ["查看阵容", "进入地图", "挑战魔塔", "退出"] if started else ["开始游戏", "查看阵容", "进入地图", "挑战魔塔", "退出"]
+        options = ["查看阵容", "进入地图", "挑战魔塔", "退出"]
         choice = choose_menu("请选择操作", options)
         selected = options[choice - 1]
-        if selected == "开始游戏":
-            started = True
-            print_panel("📜 存档信息", [f"玩家：{save['name']}", f"存档 ID：{save['playerId']}", "可选地图：" + "、".join(m["name"] for m in unlocked)])
-        elif selected == "查看阵容":
+        if selected == "查看阵容":
             show_party(save, heroes)
         elif selected == "进入地图":
             map_idx = choose_menu("选择地图", [m["name"] for m in unlocked])
