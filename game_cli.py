@@ -152,6 +152,19 @@ def stream_lines(lines: list[str], delay: float = 0.06):
         time.sleep(delay)
 
 
+def print_panel(title: str, lines: list[str]):
+    width = max(48, len(title) + 6, *(len(line) + 4 for line in lines))
+    top = "┌" + "─" * (width - 2) + "┐"
+    sep = "├" + "─" * (width - 2) + "┤"
+    bottom = "└" + "─" * (width - 2) + "┘"
+    print(top)
+    print(f"│ {title.center(width - 4)} │")
+    print(sep)
+    for line in lines:
+        print(f"│ {line.ljust(width - 4)} │")
+    print(bottom)
+
+
 def show_party(save, heroes):
     by_id = {h["id"]: h for h in heroes["heroes"]}
     print_panel("👥 当前阵容", [
