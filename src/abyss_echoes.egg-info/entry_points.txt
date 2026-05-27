@@ -1,0 +1,3 @@
+[console_scripts]
+abyss = abyss_echoes.cli:main
+abyss-echoes = abyss_echoes.cli:main

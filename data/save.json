@@ -1,0 +1,194 @@
+{
+  "gold": 395,
+  "materials": 12,
+  "inventory": [],
+  "hero_loadouts": {
+    "steel_guardian": {
+      "pants": {
+        "item_id": "loot_pants_legendary_4654",
+        "display_name": "虚触腿甲",
+        "slot": "pants",
+        "rarity": "legendary",
+        "item_power": 155,
+        "main_stat": {
+          "max_hp": 153
+        },
+        "affixes": [
+          {
+            "type": "resist_flat",
+            "value": 17
+          },
+          {
+            "type": "hp_pct",
+            "value": 0.12
+          }
+        ],
+        "legendary_aspect": "predator_fury",
+        "recommended_hero_ids": [
+          "steel_guardian"
+        ]
+      },
+      "chest": {
+        "item_id": "loot_chest_rare_6827",
+        "display_name": "王影胸甲",
+        "slot": "chest",
+        "rarity": "rare",
+        "item_power": 112,
+        "main_stat": {
+          "armor": 24
+        },
+        "affixes": [
+          {
+            "type": "atk_pct",
+            "value": 0.1
+          },
+          {
+            "type": "shield_bonus",
+            "value": 0.07
+          }
+        ],
+        "legendary_aspect": null,
+        "recommended_hero_ids": [
+          "steel_guardian"
+        ]
+      },
+      "helmet": {
+        "item_id": "loot_helmet_rare_9654",
+        "display_name": "夜璃头盔",
+        "slot": "helmet",
+        "rarity": "rare",
+        "item_power": 135,
+        "main_stat": {
+          "resist": 13
+        },
+        "affixes": [
+          {
+            "type": "damage_vs_debuffed",
+            "value": 0.1
+          },
+          {
+            "type": "shield_bonus",
+            "value": 0.08
+          }
+        ],
+        "legendary_aspect": null,
+        "recommended_hero_ids": [
+          "steel_guardian"
+        ]
+      }
+    },
+    "berserker": {
+      "chest": {
+        "item_id": "loot_chest_magic_9652",
+        "display_name": "雾辉胸甲",
+        "slot": "chest",
+        "rarity": "magic",
+        "item_power": 110,
+        "main_stat": {
+          "armor": 12
+        },
+        "affixes": [
+          {
+            "type": "energy_gain_bonus",
+            "value": 0.09
+          },
+          {
+            "type": "crit_damage",
+            "value": 0.2
+          }
+        ],
+        "legendary_aspect": null,
+        "recommended_hero_ids": [
+          "steel_guardian"
+        ]
+      }
+    }
+  },
+  "party": [
+    [
+      "steel_guardian",
+      "frontline"
+    ],
+    [
+      "berserker",
+      "frontline"
+    ],
+    [
+      "hunter_ranger",
+      "backline"
+    ],
+    [
+      "arcane_scholar",
+      "backline"
+    ],
+    [
+      "sacred_priest",
+      "backline"
+    ]
+  ],
+  "current_stage": 3,
+  "highest_stage_unlocked": 3,
+  "hero_progress": {
+    "steel_guardian": {
+      "level": 2,
+      "xp": 100
+    },
+    "temple_warden": {
+      "level": 1,
+      "xp": 0
+    },
+    "thorn_brute": {
+      "level": 1,
+      "xp": 0
+    },
+    "berserker": {
+      "level": 2,
+      "xp": 100
+    },
+    "shadow_blade": {
+      "level": 1,
+      "xp": 0
+    },
+    "halberd_commander": {
+      "level": 1,
+      "xp": 0
+    },
+    "hunter_ranger": {
+      "level": 2,
+      "xp": 100
+    },
+    "repeater_engineer": {
+      "level": 1,
+      "xp": 0
+    },
+    "demolitionist": {
+      "level": 1,
+      "xp": 0
+    },
+    "arcane_scholar": {
+      "level": 2,
+      "xp": 100
+    },
+    "frost_witch": {
+      "level": 1,
+      "xp": 0
+    },
+    "void_hexer": {
+      "level": 1,
+      "xp": 0
+    },
+    "sacred_priest": {
+      "level": 2,
+      "xp": 100
+    },
+    "war_song_bard": {
+      "level": 1,
+      "xp": 0
+    },
+    "chrono_sage": {
+      "level": 1,
+      "xp": 0
+    }
+  },
+  "hero_specializations": {}
+}

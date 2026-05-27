@@ -1,0 +1,800 @@
+[
+  {
+    "skill_id": "shield_strike",
+    "name": "Shield Strike",
+    "skill_type": "basic",
+    "targeting": "single_enemy",
+    "damage_type": "physical",
+    "ratio": 1.0,
+    "energy_cost": 0,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 1.0,
+        "target": null
+      },
+      {
+        "effect_type": "status",
+        "value": 0.0,
+        "chance": 0.2,
+        "duration": 1,
+        "target": null,
+        "status_id": "taunt"
+      }
+    ]
+  },
+  {
+    "skill_id": "fortress_stand",
+    "name": "Fortress Stand",
+    "skill_type": "active",
+    "targeting": "self",
+    "damage_type": null,
+    "ratio": null,
+    "energy_cost": 100,
+    "effects": [
+      {
+        "effect_type": "shield",
+        "value": 0.16,
+        "target": "self"
+      },
+      {
+        "effect_type": "status",
+        "value": 0.18,
+        "duration": 2,
+        "target": "self",
+        "status_id": "haste"
+      }
+    ]
+  },
+  {
+    "skill_id": "armor_reverb",
+    "name": "Armor Reverb",
+    "skill_type": "passive",
+    "targeting": "self",
+    "damage_type": null,
+    "ratio": null,
+    "energy_cost": 0,
+    "effects": []
+  },
+  {
+    "skill_id": "holy_hammer",
+    "name": "Holy Hammer",
+    "skill_type": "basic",
+    "targeting": "single_enemy",
+    "damage_type": "physical",
+    "ratio": 0.95,
+    "energy_cost": 0,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 0.95,
+        "target": null
+      },
+      {
+        "effect_type": "shield",
+        "value": 0.04,
+        "target": "lowest_hp_ally"
+      }
+    ]
+  },
+  {
+    "skill_id": "sacred_shelter",
+    "name": "Sacred Shelter",
+    "skill_type": "active",
+    "targeting": "all_allies",
+    "damage_type": null,
+    "ratio": null,
+    "energy_cost": 100,
+    "effects": [
+      {
+        "effect_type": "shield",
+        "value": 0.08,
+        "target": "all_allies"
+      },
+      {
+        "effect_type": "status",
+        "value": 0.1,
+        "duration": 2,
+        "target": "all_allies",
+        "status_id": "haste"
+      }
+    ]
+  },
+  {
+    "skill_id": "loyal_intercept",
+    "name": "Loyal Intercept",
+    "skill_type": "passive",
+    "targeting": "self",
+    "damage_type": null,
+    "ratio": null,
+    "energy_cost": 0,
+    "effects": []
+  },
+  {
+    "skill_id": "thorn_fist",
+    "name": "Thorn Fist",
+    "skill_type": "basic",
+    "targeting": "single_enemy",
+    "damage_type": "physical",
+    "ratio": 1.05,
+    "energy_cost": 0,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 1.15,
+        "target": null
+      }
+    ]
+  },
+  {
+    "skill_id": "thorn_tide",
+    "name": "Thorn Tide",
+    "skill_type": "active",
+    "targeting": "all_enemies",
+    "damage_type": "physical",
+    "ratio": 0.7,
+    "energy_cost": 100,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 0.7
+      },
+      {
+        "effect_type": "status",
+        "value": 0.05,
+        "duration": 2,
+        "target": "all_enemies",
+        "status_id": "bleed"
+      },
+      {
+        "effect_type": "shield",
+        "value": 0.05,
+        "target": "self"
+      }
+    ]
+  },
+  {
+    "skill_id": "bloodbone_rage",
+    "name": "Bloodbone Rage",
+    "skill_type": "passive",
+    "targeting": "self",
+    "damage_type": null,
+    "ratio": null,
+    "energy_cost": 0,
+    "effects": []
+  },
+  {
+    "skill_id": "rending_slash",
+    "name": "Rending Slash",
+    "skill_type": "basic",
+    "targeting": "single_enemy",
+    "damage_type": "physical",
+    "ratio": 1.1,
+    "energy_cost": 0,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 1.2,
+        "target": null
+      }
+    ]
+  },
+  {
+    "skill_id": "blood_combo",
+    "name": "Blood Combo",
+    "skill_type": "active",
+    "targeting": "single_enemy",
+    "damage_type": "physical",
+    "ratio": 0.85,
+    "energy_cost": 100,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 1.0
+      },
+      {
+        "effect_type": "damage",
+        "value": 1.0
+      },
+      {
+        "effect_type": "damage",
+        "value": 1.0
+      }
+    ]
+  },
+  {
+    "skill_id": "murder_fervor",
+    "name": "Murder Fervor",
+    "skill_type": "passive",
+    "targeting": "self",
+    "damage_type": null,
+    "ratio": null,
+    "energy_cost": 0,
+    "effects": []
+  },
+  {
+    "skill_id": "shadow_assault",
+    "name": "Shadow Assault",
+    "skill_type": "basic",
+    "targeting": "lowest_hp_enemy",
+    "damage_type": "physical",
+    "ratio": 0.95,
+    "energy_cost": 0,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 0.95,
+        "target": null
+      }
+    ]
+  },
+  {
+    "skill_id": "night_execution",
+    "name": "Night Execution",
+    "skill_type": "active",
+    "targeting": "enemy_backline",
+    "damage_type": "physical",
+    "ratio": 2.2,
+    "energy_cost": 100,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 2.2,
+        "target": null
+      }
+    ]
+  },
+  {
+    "skill_id": "dusk_steps",
+    "name": "Dusk Steps",
+    "skill_type": "passive",
+    "targeting": "self",
+    "damage_type": null,
+    "ratio": null,
+    "energy_cost": 0,
+    "effects": []
+  },
+  {
+    "skill_id": "halberd_thrust",
+    "name": "Halberd Thrust",
+    "skill_type": "basic",
+    "targeting": "single_enemy",
+    "damage_type": "physical",
+    "ratio": 1.0,
+    "energy_cost": 0,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 1.0,
+        "target": null
+      }
+    ]
+  },
+  {
+    "skill_id": "formation_breaker",
+    "name": "Formation Breaker",
+    "skill_type": "active",
+    "targeting": "frontline_enemies",
+    "damage_type": "physical",
+    "ratio": 1.4,
+    "energy_cost": 100,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 1.4
+      },
+      {
+        "effect_type": "status",
+        "value": 0.15,
+        "duration": 2,
+        "target": null,
+        "status_id": "slow"
+      }
+    ]
+  },
+  {
+    "skill_id": "command_pressure",
+    "name": "Command Pressure",
+    "skill_type": "passive",
+    "targeting": "self",
+    "damage_type": null,
+    "ratio": null,
+    "energy_cost": 0,
+    "effects": []
+  },
+  {
+    "skill_id": "piercing_arrow",
+    "name": "Piercing Arrow",
+    "skill_type": "basic",
+    "targeting": "lowest_hp_enemy",
+    "damage_type": "physical",
+    "ratio": 0.95,
+    "energy_cost": 0,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 1.05,
+        "target": null
+      }
+    ]
+  },
+  {
+    "skill_id": "arrow_storm",
+    "name": "Arrow Storm",
+    "skill_type": "active",
+    "targeting": "all_enemies",
+    "damage_type": "physical",
+    "ratio": 0.8,
+    "energy_cost": 100,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 1.05
+      }
+    ]
+  },
+  {
+    "skill_id": "precise_hunt",
+    "name": "Precise Hunt",
+    "skill_type": "passive",
+    "targeting": "self",
+    "damage_type": null,
+    "ratio": null,
+    "energy_cost": 0,
+    "effects": []
+  },
+  {
+    "skill_id": "double_bolt",
+    "name": "Double Bolt",
+    "skill_type": "basic",
+    "targeting": "single_enemy",
+    "damage_type": "physical",
+    "ratio": 0.75,
+    "energy_cost": 0,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 0.75
+      },
+      {
+        "effect_type": "damage",
+        "value": 0.75
+      }
+    ]
+  },
+  {
+    "skill_id": "overdrive_barrage",
+    "name": "Overdrive Barrage",
+    "skill_type": "active",
+    "targeting": "lowest_hp_enemy",
+    "damage_type": "physical",
+    "ratio": 0.55,
+    "energy_cost": 100,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 0.7
+      },
+      {
+        "effect_type": "damage",
+        "value": 0.7
+      },
+      {
+        "effect_type": "damage",
+        "value": 0.7
+      },
+      {
+        "effect_type": "damage",
+        "value": 0.7
+      },
+      {
+        "effect_type": "damage",
+        "value": 0.7
+      },
+      {
+        "effect_type": "damage",
+        "value": 0.7
+      }
+    ]
+  },
+  {
+    "skill_id": "clockwork_overload",
+    "name": "Clockwork Overload",
+    "skill_type": "passive",
+    "targeting": "self",
+    "damage_type": null,
+    "ratio": null,
+    "energy_cost": 0,
+    "effects": []
+  },
+  {
+    "skill_id": "firebomb",
+    "name": "Firebomb",
+    "skill_type": "basic",
+    "targeting": "single_enemy",
+    "damage_type": "physical",
+    "ratio": 0.9,
+    "energy_cost": 0,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 0.9,
+        "target": null
+      },
+      {
+        "effect_type": "status",
+        "value": 0.05,
+        "chance": 0.25,
+        "duration": 2,
+        "target": null,
+        "status_id": "burn"
+      }
+    ]
+  },
+  {
+    "skill_id": "blast_volley",
+    "name": "Blast Volley",
+    "skill_type": "active",
+    "targeting": "all_enemies",
+    "damage_type": "physical",
+    "ratio": 0.85,
+    "energy_cost": 100,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 0.85
+      },
+      {
+        "effect_type": "status",
+        "value": 0.05,
+        "chance": 0.5,
+        "duration": 2,
+        "target": "all_enemies",
+        "status_id": "burn"
+      }
+    ]
+  },
+  {
+    "skill_id": "powder_festival",
+    "name": "Powder Festival",
+    "skill_type": "passive",
+    "targeting": "self",
+    "damage_type": null,
+    "ratio": null,
+    "energy_cost": 0,
+    "effects": []
+  },
+  {
+    "skill_id": "arcane_bolt",
+    "name": "Arcane Bolt",
+    "skill_type": "basic",
+    "targeting": "single_enemy",
+    "damage_type": "magical",
+    "ratio": 1.0,
+    "energy_cost": 0,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 1.1,
+        "target": null
+      },
+      {
+        "effect_type": "status",
+        "value": 0.05,
+        "chance": 0.25,
+        "duration": 2,
+        "target": null,
+        "status_id": "burn"
+      }
+    ]
+  },
+  {
+    "skill_id": "meteor_rite",
+    "name": "Meteor Rite",
+    "skill_type": "active",
+    "targeting": "all_enemies",
+    "damage_type": "magical",
+    "ratio": 0.9,
+    "energy_cost": 100,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 1.15
+      },
+      {
+        "effect_type": "status",
+        "value": 0.05,
+        "chance": 0.6,
+        "duration": 2,
+        "target": "all_enemies",
+        "status_id": "burn"
+      }
+    ]
+  },
+  {
+    "skill_id": "elemental_resonance",
+    "name": "Elemental Resonance",
+    "skill_type": "passive",
+    "targeting": "self",
+    "damage_type": null,
+    "ratio": null,
+    "energy_cost": 0,
+    "effects": []
+  },
+  {
+    "skill_id": "frost_spike",
+    "name": "Frost Spike",
+    "skill_type": "basic",
+    "targeting": "single_enemy",
+    "damage_type": "magical",
+    "ratio": 0.95,
+    "energy_cost": 0,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 0.95,
+        "target": null
+      },
+      {
+        "effect_type": "status",
+        "value": 0.15,
+        "chance": 0.2,
+        "duration": 2,
+        "target": null,
+        "status_id": "slow"
+      }
+    ]
+  },
+  {
+    "skill_id": "glacial_tempest",
+    "name": "Glacial Tempest",
+    "skill_type": "active",
+    "targeting": "all_enemies",
+    "damage_type": "magical",
+    "ratio": 0.8,
+    "energy_cost": 100,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 1.0
+      },
+      {
+        "effect_type": "status",
+        "value": 0.12,
+        "duration": 2,
+        "target": "all_enemies",
+        "status_id": "slow"
+      },
+      {
+        "effect_type": "status",
+        "value": 0.0,
+        "chance": 0.08,
+        "duration": 1,
+        "target": "all_enemies",
+        "status_id": "freeze"
+      }
+    ]
+  },
+  {
+    "skill_id": "cold_domain",
+    "name": "Cold Domain",
+    "skill_type": "passive",
+    "targeting": "self",
+    "damage_type": null,
+    "ratio": null,
+    "energy_cost": 0,
+    "effects": []
+  },
+  {
+    "skill_id": "void_mark",
+    "name": "Void Mark",
+    "skill_type": "basic",
+    "targeting": "single_enemy",
+    "damage_type": "magical",
+    "ratio": 0.85,
+    "energy_cost": 0,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 0.85,
+        "target": null
+      },
+      {
+        "effect_type": "status",
+        "value": 0.08,
+        "duration": 2,
+        "target": null,
+        "status_id": "weaken"
+      }
+    ]
+  },
+  {
+    "skill_id": "abyss_curse",
+    "name": "Abyss Curse",
+    "skill_type": "active",
+    "targeting": "all_enemies",
+    "damage_type": "magical",
+    "ratio": 0.4,
+    "energy_cost": 100,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 0.4
+      },
+      {
+        "effect_type": "status",
+        "value": 0.08,
+        "duration": 2,
+        "target": "all_enemies",
+        "status_id": "erosion"
+      }
+    ]
+  },
+  {
+    "skill_id": "curse_echo",
+    "name": "Curse Echo",
+    "skill_type": "passive",
+    "targeting": "self",
+    "damage_type": null,
+    "ratio": null,
+    "energy_cost": 0,
+    "effects": []
+  },
+  {
+    "skill_id": "holy_wave",
+    "name": "Holy Wave",
+    "skill_type": "basic",
+    "targeting": "single_enemy",
+    "damage_type": "magical",
+    "ratio": 0.7,
+    "energy_cost": 0,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 0.7
+      },
+      {
+        "effect_type": "heal",
+        "value": 0.28,
+        "target": "lowest_hp_ally"
+      }
+    ]
+  },
+  {
+    "skill_id": "grace_prayer",
+    "name": "Grace Prayer",
+    "skill_type": "active",
+    "targeting": "all_allies",
+    "damage_type": null,
+    "ratio": null,
+    "energy_cost": 100,
+    "effects": [
+      {
+        "effect_type": "heal",
+        "value": 0.72,
+        "target": "all_allies"
+      },
+      {
+        "effect_type": "status",
+        "value": 0.12,
+        "duration": 2,
+        "target": "all_allies",
+        "status_id": "haste"
+      }
+    ]
+  },
+  {
+    "skill_id": "afterglow_blessing",
+    "name": "Afterglow Blessing",
+    "skill_type": "passive",
+    "targeting": "self",
+    "damage_type": null,
+    "ratio": null,
+    "energy_cost": 0,
+    "effects": []
+  },
+  {
+    "skill_id": "rally_chord",
+    "name": "Rally Chord",
+    "skill_type": "basic",
+    "targeting": "single_enemy",
+    "damage_type": "magical",
+    "ratio": 0.75,
+    "energy_cost": 0,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 0.75
+      },
+      {
+        "effect_type": "energy",
+        "value": 8,
+        "target": "lowest_hp_ally"
+      }
+    ]
+  },
+  {
+    "skill_id": "victory_anthem",
+    "name": "Victory Anthem",
+    "skill_type": "active",
+    "targeting": "all_allies",
+    "damage_type": null,
+    "ratio": null,
+    "energy_cost": 100,
+    "effects": [
+      {
+        "effect_type": "status",
+        "value": 0.12,
+        "duration": 2,
+        "target": "all_allies",
+        "status_id": "haste"
+      },
+      {
+        "effect_type": "energy",
+        "value": 12,
+        "target": "all_allies"
+      }
+    ]
+  },
+  {
+    "skill_id": "echo_of_encouragement",
+    "name": "Echo of Encouragement",
+    "skill_type": "passive",
+    "targeting": "self",
+    "damage_type": null,
+    "ratio": null,
+    "energy_cost": 0,
+    "effects": []
+  },
+  {
+    "skill_id": "time_pulse",
+    "name": "Time Pulse",
+    "skill_type": "basic",
+    "targeting": "single_enemy",
+    "damage_type": "magical",
+    "ratio": 0.8,
+    "energy_cost": 0,
+    "effects": [
+      {
+        "effect_type": "damage",
+        "value": 0.8
+      },
+      {
+        "effect_type": "action_gauge",
+        "value": 100,
+        "target": "lowest_hp_ally"
+      }
+    ]
+  },
+  {
+    "skill_id": "timeline_sync",
+    "name": "Timeline Sync",
+    "skill_type": "active",
+    "targeting": "all_allies",
+    "damage_type": null,
+    "ratio": null,
+    "energy_cost": 100,
+    "effects": [
+      {
+        "effect_type": "action_gauge",
+        "value": 200,
+        "target": "all_allies"
+      },
+      {
+        "effect_type": "energy",
+        "value": 10,
+        "target": "all_allies"
+      }
+    ]
+  },
+  {
+    "skill_id": "foresight_loop",
+    "name": "Foresight Loop",
+    "skill_type": "passive",
+    "targeting": "self",
+    "damage_type": null,
+    "ratio": null,
+    "energy_cost": 0,
+    "effects": []
+  }
+]

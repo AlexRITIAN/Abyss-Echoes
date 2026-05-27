@@ -1,0 +1,62 @@
+[
+  {
+    "item_id": "swift_boots",
+    "slot": "boots",
+    "rarity": "rare",
+    "item_power": 120,
+    "main_stat": {
+      "speed": 12
+    },
+    "affixes": [
+      {
+        "type": "speed_flat",
+        "value": 6
+      },
+      {
+        "type": "energy_gain_bonus",
+        "value": 0.08
+      }
+    ],
+    "legendary_aspect": null
+  },
+  {
+    "item_id": "guard_plate",
+    "slot": "chest",
+    "rarity": "rare",
+    "item_power": 118,
+    "main_stat": {
+      "max_hp": 120
+    },
+    "affixes": [
+      {
+        "type": "armor_flat",
+        "value": 12
+      },
+      {
+        "type": "shield_bonus",
+        "value": 0.1
+      }
+    ],
+    "legendary_aspect": null
+  },
+  {
+    "item_id": "ember_staff",
+    "slot": "weapon",
+    "rarity": "legendary",
+    "item_power": 132,
+    "main_stat": {
+      "mag": 18
+    },
+    "affixes": [
+      {
+        "type": "mag_pct",
+        "value": 0.12
+      },
+      {
+        "type": "damage_vs_debuffed",
+        "value": 0.1
+      }
+    ],
+    "legendary_aspect": "embers_feed_energy"
+  }
+]
