@@ -772,8 +772,8 @@ def loot_item_to_static_profile(item: LootItem) -> ItemStaticProfile:
         affixes=affixes,
         legendary_effects=effects,
         workshop_state=WorkshopState(
-            strengthen_level=0,
-            can_strengthen=True,
+            strengthen_level=item.strengthen_level,
+            can_strengthen=item.strengthen_level < MAX_WORKSHOP_STRENGTHEN_LEVEL,
             can_reroll=True,
             can_refine=is_ancestral,
             can_extract=bool(item.legendary_aspect) and source_type != "regional_boss",
@@ -1005,7 +1005,13 @@ def apply_workshop_action_to_item(item: LootItem, action: str) -> LootItem:
     if action == "strengthen":
         if item.strengthen_level >= MAX_WORKSHOP_STRENGTHEN_LEVEL:
             raise ValueError("strengthen level already at +8")
+        old_level = item.strengthen_level
         item.strengthen_level += 1
+        new_level = item.strengthen_level
+        ratio = loot_config.STRENGTHEN_MULTIPLIER[new_level] / loot_config.STRENGTHEN_MULTIPLIER[old_level]
+        item.main_stat = {
+            key: round(value * ratio, 2) for key, value in item.main_stat.items()
+        }
         item.item_power += 5
         return item
     if action == "reroll":
